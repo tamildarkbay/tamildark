@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="slideshow-container">
+    {% for movie in slideshow_movies %}
+    <div class="slide fade">
+        <picture>
+            <source media="(max-width: 600px)" srcset="{{ movie['mobile_poster'] }}">
+            <img src="{{ movie['pc_poster'] }}" alt="{{ movie['name'] }}">
+        </picture>
+        <div class="movie-info">
+            <h2>{{ movie['name'] }}</h2>
+            <p>Release Date: {{ movie['release_date'] }}</p>
+            <p>{{ movie['description'] }}</p>
+            <a href="{{ movie['trailer_link'] }}" target="_blank" class="modern-button">Watch Trailer</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<a href="{{ url_for('movies') }}" class="modern-button explore-button">Explore Movies</a>
+<div class="note-container">
+    <p>Important Note: [Edit this in the file]</p>
+</div>
+<script src="{{ url_for('static', filename='js/slideshow.js') }}"></script>
+{% endblock %}

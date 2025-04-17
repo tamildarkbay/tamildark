@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-container">
+    <input type="text" id="search" placeholder="Search movies...">
+</div>
+<div class="note-container">
+    <p>Note: [Edit this in the file]</p>
+</div>
+<div class="movie-grid">
+    {% for movie in movies %}
+    <div class="movie-card">
+        <img src="{{ movie['poster'] }}" alt="{{ movie['name'] }}">
+        <h3>{{ movie['name'] }}</h3>
+        <p>Language: {{ movie['language'] }}</p>
+        <p>Rating: <span class="stars">★{{ movie['rating'] }}</span></p>
+        <a href="{{ movie['watch_link'] }}" target="_blank" class="modern-button">Watch</a>
+        <a href="{{ movie['download_link'] }}" target="_blank" class="modern-button">Download</a>
+    </div>
+    {% endfor %}
+</div>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+{% endblock %}

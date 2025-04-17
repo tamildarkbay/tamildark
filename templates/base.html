@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTT Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    {% if 'user_id' in session %}
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+    </header>
+    {% endif %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% if 'user_id' in session %}
+    <nav class="bottom-nav">
+        <a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a>
+        <a href="{{ url_for('movies') }}"><i class="fas fa-film"></i></a>
+        <a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i></a>
+        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i></a>
+    </nav>
+    {% endif %}
+</body>
+</html>
